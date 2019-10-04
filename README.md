@@ -77,17 +77,24 @@
         `getMeetsOrderApproveCriteria`
     as methods on the entity of BookOrder. These can be found in `iseeme/src/Entity/BookOrder.php`
 
-    18. Now in ruby I would create a service class to run the checks and call the change value, then put the service class in the script. However, I do not really know how the service class system is suppose to work in php/symfony, so I did something that might be considered a terrible idea, and that is that I put the call in the controller `iseeme/src/Controller/BookOrderController.php`
+    18. Now in ruby I would create a service class to run the checks and call the change value, then put the service class in the script. However, I do not really know how the service class system is suppose to work in php/symfony, so I did something that might be considered a terrible idea, and that is that I put the call in the controller `iseeme/src/Controller/BookOrderController.php`. So at this point just by going to the url {yourhost.location}/fix_statuses the entirety of the issues is fixed. 
 
-    19. I suppose it would make sense for me to commit my code. 
+    19. I suppose it would make sense for me to commit my code. Which resulted in the entire iseeme symfony project being marked as a submodule. That took a secdond to correct.
 
-    20. 
+    20. Okay now I need figure out how to make a script call.
 
-
-
-
+    21. Okay it appears to be working on when running `php bin/console app:order-approve` but cannot get the `symfony iseeme:order-approve` version to work. If ther is time I will loop back around to this. 
 
 
+2. I think that there might be a an issue with the question. https://www.iseeme.com/example is giving a 404 page. I guess I am not really sure with how to proceed here, unless I am missing some sort of php magic that I do not know much about. 
+
+3. As I am not certain exactly what is going here, due to the issue noted above I can only speculate. The first thing is that it seems somewhat intense to call for all of the data and datatypes in one call. 
+    a. I think that there should be one call for `count`, one call for `max`, `min`, etc. Furthermore it should not be confined to just run on weight, but rather allow it too run a defined column, such has height, mass, volume, dopeness, percentage made up of sugar, grains of sand on certain beaches. 
+    b. This doesnt seem to have any double check to make sure there isnt any missing or off information. I  think that it may make more sense to first call for number of components, then call call for a list of component weights, with no issue there (especially if none of the wieghts are `0`, `false`, `0.0`, `null` ) then that would be a reasonably good indicator of correct values. 
+    c. Not scalable, well... Let me rephrase that, it doesnt allow one to just look across a range/size/subset of the data, which if it is a huge set and the call only required small subset, say if you had money spent by the goverment over alltime you might just want to call week by week and see these values over that time. 
+
+
+4. I would have the specifications be something like the images seen in /Restful Spec.png. I think that I would create a route that provides a way to have a simple entire count, and a param post that would allow for a range dependant on params. I would do the same thing for min/max/stddev/average. I would then create a simple single grab of a component based on param as well as a the ability to create a new, and edit (soft delete) an example. I would lastly make a simple range feature that would allow one to return all of component based on a range defined by params. 
 
 
 

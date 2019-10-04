@@ -83,9 +83,7 @@ class BookOrderController extends AbstractController
         return new Response('Saved new book_order with id '.$book_order->getId());
     }
     
-   /**
-     * @Route("/fix_statuses", name="book_orders_fix_statuses")
-     */
+
     public function fix_statuses()
     {
         $orders = $this->getDoctrine()
